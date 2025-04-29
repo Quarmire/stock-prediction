@@ -17,7 +17,7 @@ in with pkgs; mkShell {
       (hmmlearn.overridePythonAttrs (old: { doCheck = false; }))
       matplotlib
       seaborn
-      
+      pykalman
       scipy
       scikit-learn
       pymc
@@ -31,5 +31,12 @@ in with pkgs; mkShell {
   shellHook = ''
     SOURCE_DATE_EPOCH=$(date +%s)
     export "LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${lib-path}"
+    VENV=.venv
+
+    if test ! -d $VENV; then
+      python3.12 -m venv $VENV
+    fi
+    source ./$VENV/bin/activate
+    export PYTHONPATH=`pwd`/$VENV/${python.sitePackages}/:$PYTHONPATH
   '';
 }
