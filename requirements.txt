@@ -1,10 +1,9 @@
 yfinance
 numpy
 pandas
-requests
 hmmlearn
-tqdm
 matplotlib
-seaborn
 pykalman
 pymc
+jupyter-core
+notebook
